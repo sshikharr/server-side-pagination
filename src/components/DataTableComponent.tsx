@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { DataTable, DataTableSelectionMultipleChangeEvent } from 'primereact/datatable';
+import { DataTable, DataTableSelectionMultipleChangeEvent, DataTablePageEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { fetchData } from '../services/api';
 import { RowData } from '../types/RowData';
 import SelectionHeaderTemplate from './SelectionHeaderTemplate';
+import '../App.css';
 
 // DataTableComponent is the main component for displaying the data table
 const DataTableComponent: React.FC = () => {
@@ -31,6 +32,11 @@ const DataTableComponent: React.FC = () => {
     return selectedRows.some(selectedRow => selectedRow.id === row.id) ? 'selected-row' : '';
   };
 
+  // Handle page change
+  const onPageChange = (e: DataTablePageEvent) => {
+    setCurrentPage((e.page ?? 0) + 1);
+  };
+
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <div className="shadow-lg rounded-lg overflow-hidden border border-gray-200 bg-white">
@@ -41,7 +47,7 @@ const DataTableComponent: React.FC = () => {
           totalRecords={totalRecords}
           lazy
           first={(currentPage - 1) * rowsPerPage}
-          onPage={(e) => setCurrentPage((e.page ?? 0) + 1)}
+          onPage={onPageChange}
           selectionMode="multiple"
           selection={selectedRows}
           onSelectionChange={onRowSelectChange}
@@ -50,6 +56,8 @@ const DataTableComponent: React.FC = () => {
           className="w-full"
           tableStyle={{ paddingInline: 10 }}
           showGridlines
+          paginatorTemplate="PrevPageLink PageLinks NextPageLink"
+          paginatorClassName="paginator-custom"
         >
           <Column
             selectionMode="multiple"

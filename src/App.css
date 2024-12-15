@@ -29,3 +29,13 @@
 #buttonSubmit{
   margin-top: 10px;
 }
+
+.paginator-custom .p-paginator-pages .p-paginator-page {
+  padding: 0 10px; /* Increase padding between page numbers */
+}
+
+.paginator-custom .p-paginator-prev.p-disabled,
+.paginator-custom .p-paginator-next.p-disabled {
+  pointer-events: none; /* Disable pointer events for disabled arrows */
+  opacity: 0.5; /* Optional: Add opacity to indicate disabled state */
+}
