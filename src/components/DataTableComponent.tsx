@@ -4,7 +4,7 @@ import { Column } from 'primereact/column';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { fetchData } from '../services/api';
 import { RowData } from '../types/RowData';
-import SelectionHeaderTemplate from './selectionHeaderTemplate';
+import SelectionHeaderTemplate from './SelectionHeaderTemplate';
 
 // DataTableComponent is the main component for displaying the data table
 const DataTableComponent: React.FC = () => {
