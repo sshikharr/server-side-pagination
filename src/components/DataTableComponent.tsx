@@ -6,23 +6,27 @@ import { fetchData } from '../services/api';
 import { RowData } from '../types/RowData';
 import SelectionHeaderTemplate from './selectionHeaderTemplate';
 
+// DataTableComponent is the main component for displaying the data table
 const DataTableComponent: React.FC = () => {
-  const [data, setData] = useState<RowData[]>([]);
-  const [selectedRows, setSelectedRows] = useState<RowData[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalRecords, setTotalRecords] = useState(0);
-  const [numRowsToSelect, setNumRowsToSelect] = useState(0);
-  const rowsPerPage = 12;
-  const overlayPanelRef = useRef<OverlayPanel>(null);
+  const [data, setData] = useState<RowData[]>([]); // State to hold the data
+  const [selectedRows, setSelectedRows] = useState<RowData[]>([]); // State to hold selected rows
+  const [currentPage, setCurrentPage] = useState(1); // State to hold the current page
+  const [totalRecords, setTotalRecords] = useState(0); // State to hold the total number of records
+  const [numRowsToSelect, setNumRowsToSelect] = useState(0); // State to hold the number of rows to select
+  const rowsPerPage = 12; // Number of rows per page
+  const overlayPanelRef = useRef<OverlayPanel>(null); // Reference to the overlay panel
 
+  // Fetch data when the component mounts or currentPage changes
   useEffect(() => {
     fetchData(currentPage, rowsPerPage, setData, setTotalRecords);
   }, [currentPage]);
 
+  // Handle row selection change
   const onRowSelectChange = (e: DataTableSelectionMultipleChangeEvent<RowData[]>) => {
     setSelectedRows(e.value);
   };
 
+  // Determine the class name for a row based on whether it is selected
   const rowClassName = (row: RowData) => {
     return selectedRows.some(selectedRow => selectedRow.id === row.id) ? 'selected-row' : '';
   };

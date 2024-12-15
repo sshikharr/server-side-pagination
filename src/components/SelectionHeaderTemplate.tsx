@@ -15,6 +15,7 @@ interface SelectionHeaderTemplateProps {
   rowsPerPage: number;
 }
 
+// SelectionHeaderTemplate is a component for displaying the header template with an overlay panel
 const SelectionHeaderTemplate: React.FC<SelectionHeaderTemplateProps> = ({
   overlayPanelRef,
   numRowsToSelect,
@@ -24,10 +25,12 @@ const SelectionHeaderTemplate: React.FC<SelectionHeaderTemplateProps> = ({
   currentPage,
   rowsPerPage
 }) => {
+  // Handle icon click to toggle the overlay panel
   const handleIconClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     overlayPanelRef.current?.toggle(event);
   };
 
+  // Handle overlay submit to fetch and select rows
   const handleOverlaySubmit = async () => {
     const totalRowsToSelect = numRowsToSelect;
     const newSelectedRows = [...selectedRows];

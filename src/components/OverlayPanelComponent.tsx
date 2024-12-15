@@ -10,6 +10,7 @@ interface OverlayPanelComponentProps {
   handleOverlaySubmit: () => void;
 }
 
+// OverlayPanelComponent is a component for displaying an overlay panel with input and submit button
 const OverlayPanelComponent: React.FC<OverlayPanelComponentProps> = ({
   overlayPanelRef,
   numRowsToSelect,

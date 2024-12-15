@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { RowData } from '../types/RowData';
 
+// fetchData is a function to fetch data from the API
 export const fetchData = async (page: number, limit: number, setData?: (data: RowData[]) => void, setTotalRecords?: (total: number) => void) => {
   try {
     const result = await axios.get(`https://api.artic.edu/api/v1/artworks?page=${page}&limit=${limit}`);

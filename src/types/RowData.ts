@@ -1,3 +1,4 @@
+// RowData is an interface representing the structure of a row in the data table
 export interface RowData {
   id: number;
   title: string;
